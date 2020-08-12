@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: auth-server
+  datasource:
+    url: jdbc:mysql://172.20.72.200:3306/cloud_path_cms_dev?characterEncoding=UTF-8&useSSL=false
+    username: cms_dev
+    password: a29uZ3dlaXFpYW5n
+    hikari:
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      maximum-pool-size: 9
+
+server:
+  port: 8080
+
+management:
+  endpoint:
+    health:
+      enabled: true

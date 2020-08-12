@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: auth-client
+  datasource:
+    url: jdbc:mysql://172.20.72.200:3306/cloud_path_cms_dev?characterEncoding=UTF-8&useSSL=false
+    username: cms_dev
+    password: a29uZ3dlaXFpYW5n
+    hikari:
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      maximum-pool-size: 9
+server:
+  port: 9000
+  servlet:
+    context-path: /client-user
+#    session:
+#      cookie:
+#        name: CLIENTSESSION
+
+security:
+  oauth2:
+    client:
+      client-id: user-client
+      client-secret: user-secret-8888
+      user-authorization-uri: http://localhost:8080/oauth/authorize
+      access-token-uri: http://localhost:8080/oauth/token
+    resource:
+      jwt:
+        key-uri: http://localhost:8080/oauth/token_key
+        key-value: dev  # server端下发
+    authorization:
+      check-token-access: http://localhost:8080/oauth/check_token
