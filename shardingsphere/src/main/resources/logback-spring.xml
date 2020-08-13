@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <property name="LOG_PATH" value="/data/server/asset/inventory/logs"/>
+    <springProperty scope="context" name="springAppName" source="spring.application.name"/>
+    <property name="LOG_PATTERN"
+              value="[%d{yyyyMMdd HH:mm:ss}][%-5level][appKey=${springAppName:-}][traceId:%X{traceId}] %logger{5} [%thread] [%-30logger{0}][%-3L] - %msg%n"/>
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>${LOG_PATTERN}</Pattern>
+        </encoder>
+    </appender>
+
+    <appender name="main" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${LOG_PATH}/main.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>
+                ${LOG_PATH}/main.%d{yyyy-MM-dd}.%i.log.zip
+            </FileNamePattern>
+            <MaxFileSize>800MB</MaxFileSize>
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>${LOG_PATTERN}</Pattern>
+        </encoder>
+    </appender>
+
+    <appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <File>${LOG_PATH}/error.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>
+                ${LOG_PATH}/error.%d{yyyy-MM-dd}.%i.log.zip
+            </FileNamePattern>
+            <MaxFileSize>800MB</MaxFileSize>
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>[%d{yyyyMMdd HH:mm:ss}] [%thread] [%-5level] [%-30logger{0}][%-3L] [traceId:%X{traceId}] - %msg%n
+            </Pattern>
+        </encoder>
+    </appender>
+
+
+    <springProfile name="test,prod">
+        <logger name="com.cloudpath" level="info" additivity="false">
+            <appender-ref ref="main"/>
+            <appender-ref ref="error"/>
+        </logger>
+    </springProfile>
+
+    <springProfile name="dev">
+        <root level="debug">
+            <appender-ref ref="stdout"/>
+        </root>
+    </springProfile>
+
+
+</configuration>

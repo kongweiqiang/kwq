@@ -1,0 +1,81 @@
+server:
+  port: 80
+mybatis:
+  configuration:
+      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+spring:
+  main:
+    allow-bean-definition-overriding: true
+shardingsphere:
+    props:
+      sql:
+        show: true
+    datasource:
+      names: assets0,assets1
+      assets0:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/assets0?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=GMT
+        username: user
+        password: word
+        druid:
+          use-global-data-source-stat: true  # 合并多个DruidDataSource的监控数据
+          connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000 # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+          initial-size: 5  #druid config 初始化大小，最小，最大
+          min-idle: 5
+          max-active: 20
+          max-wait: 60000    # 配置获取连接等待超时的时间
+          time-between-eviction-runs-millis: 60000  # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+          min-evictable-idle-time-millis: 300000  # 配置一个连接在池中最小生存的时间，单位是毫秒
+          validation-query: SELECT 1 FROM DUAL
+          test-while-idle: true
+          test-on-borrow: false
+          test-on-return: false
+          pool-prepared-statements: true # 打开PSCache，并且指定每个连接上PSCache的大小
+          max-pool-prepared-statement-per-connection-size: 20
+      assets1:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/assets1?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=GMT
+        username: user
+        password: word
+        druid:
+          use-global-data-source-stat: true  # 合并多个DruidDataSource的监控数据
+          connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000 # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+          initial-size: 5  #druid config 初始化大小，最小，最大
+          min-idle: 5
+          max-active: 20
+          max-wait: 60000    # 配置获取连接等待超时的时间
+          time-between-eviction-runs-millis: 60000  # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+          min-evictable-idle-time-millis: 300000  # 配置一个连接在池中最小生存的时间，单位是毫秒
+          validation-query: SELECT 1 FROM DUAL
+          test-while-idle: true
+          test-on-borrow: false
+          test-on-return: false
+          pool-prepared-statements: true # 打开PSCache，并且指定每个连接上PSCache的大小
+          max-pool-prepared-statement-per-connection-size: 20
+    sharding:
+      tables:
+        user:
+          actual-data-nodes: assets$->{0..1}.user$->{0..1}
+          table-strategy:
+            inline:
+              sharding-column: id
+              algorithm-expression: user$->{id % 2}
+          key-generator:
+            column: id
+            type: SNOWFLAKE
+        asset:
+          actual-data-nodes: assets$->{0..1}.asset$->{0..1}
+          table-strategy:
+            inline:
+              sharding-column: id
+              algorithm-expression: asset$->{id % 2}
+          key-generator:
+            column: id
+            type: SNOWFLAKE
+      binding-tables: user
+      default-database-strategy:
+        inline:
+          sharding-column: id
+          algorithm-expression: assets${id % 2}

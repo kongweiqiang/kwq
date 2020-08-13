@@ -10,6 +10,7 @@
     </parent>
     <modules>
         <module>spring-security-oauth</module>
+        <module>shardingsphere</module>
     </modules>
     <groupId>com.kwq</groupId>
     <artifactId>root</artifactId>
