@@ -1,6 +1,6 @@
 spring:
   application:
-    name: INVENTORY
+    name: shardingsphere
   profiles:
     active: dev
   servlet:
