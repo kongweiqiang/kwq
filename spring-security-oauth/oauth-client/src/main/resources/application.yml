@@ -2,9 +2,9 @@ spring:
   application:
     name: auth-client
   datasource:
-    url: jdbc:mysql://172.20.72.200:3306/cloud_path_cms_dev?characterEncoding=UTF-8&useSSL=false
-    username: cms_dev
-    password: a29uZ3dlaXFpYW5n
+    url: jdbc:mysql://127.0.0.1:3306/oauth_client?characterEncoding=UTF-8&useSSL=false
+    username: oauth_client
+    password: oauth_client
     hikari:
       connection-timeout: 30000
       idle-timeout: 600000
