@@ -40,7 +40,7 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.cloudpath.asset.inventory.domain
+  type-aliases-package: com.kwq.root.shardingsphere.model
 
 # 分页配置
 pagehelper:
@@ -50,32 +50,6 @@ pagehelper:
   support-methods-arguments: true
   params: count=countSql
 
-###token###
-client:
-  token:
-    # 7day 1 hour
-    max-expire: 604800
-  pri-key:
-    path: client/pri.key
-  pub-key:
-    path: client/pub.key
-  secret: 123456
-
-###白名单###
-white:
-  urls:
-    list:
-      /asset/inventory/user/login;
-      /asset/inventory/user/add;
-      /asset/inventory/user/get;
-      /asset/inventory/excel/exportFile;
-      /asset/inventory/excel/getImage;
-      /swagger-resources/**;
-      /swagger-ui.html/**;
-      /webjars/**;
-      /favicon.ico;
-      /error;
-
 #xss攻击拦截，excludes为不拦截的请求，使用“,”分隔
 xss:
   excludes:
@@ -84,7 +58,3 @@ xss:
     /v2/**,
     /webjars/**,
     /csrf
-
-upload:
-  buffer: 1024
-  filepath: /opt/asset/excel
