@@ -7,6 +7,8 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @auther : kongweiqiang
  * @DATE : 2020/8/13
@@ -21,6 +23,27 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int add(User user) {
-        return userMapper.add();
+        return userMapper.add(user);
     }
+
+    @Override
+    public List<User> find(User user) {
+        return userMapper.find(user);
+    }
+
+    @Override
+    public int delete(User user) {
+        return userMapper.delete(user);
+    }
+
+    @Override
+    public int update(User user) {
+        return userMapper.update(user);
+    }
+
+    @Override
+    public Long count(User user) {
+        return userMapper.count(user);
+    }
+
 }
