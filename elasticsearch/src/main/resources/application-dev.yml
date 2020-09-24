@@ -5,9 +5,9 @@ mybatis:
       log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 spring:
   datasource:
-    username: assert_admin
-    password: a29uZ3dlaXFpYW5n
-    url: jdbc:mysql://172.20.72.200:3306/assert?useSSL=false&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    username: admin
+    password: admin
+    url: jdbc:mysql://127.0.0.1:3306/assert?useSSL=false&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
