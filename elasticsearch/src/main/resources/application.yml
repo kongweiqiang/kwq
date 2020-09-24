@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: shardingsphere
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+  elasticsearch:
+    rest:
+      uris: http://172.20.47.4:9200,http://172.20.47.8:9200,http://172.20.47.11:9200
+      password: elastic
+      username: elastic
+#  elasticsearch:
+#    rest:
+#      uris:
+#  data:
+#    elasticsearch:
+#      client:
+#        reactive:
+#          endpoints:
+#          password:
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.kwq.root.elasticsearch.model
+
+# 分页配置
+pagehelper:
+  helper-dialect: mysql
+  #为了使用输入页数为负或者超出最大页时候使页数为最小或最大值
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
