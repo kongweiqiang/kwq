@@ -11,6 +11,8 @@
     <modules>
         <module>spring-security-oauth</module>
         <module>shardingsphere</module>
+        <module>juc</module>
+        <module>elasticsearch</module>
     </modules>
     <groupId>com.kwq</groupId>
     <artifactId>root</artifactId>

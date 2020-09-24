@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
-    <property name="LOG_PATH" value="/data/server/asset/inventory/logs"/>
+    <property name="LOG_PATH" value="/data/server/shardingsphere/logs"/>
     <springProperty scope="context" name="springAppName" source="spring.application.name"/>
     <property name="LOG_PATTERN"
               value="[%d{yyyyMMdd HH:mm:ss}][%-5level][appKey=${springAppName:-}][traceId:%X{traceId}] %logger{5} [%thread] [%-30logger{0}][%-3L] - %msg%n"/>
