@@ -3,12 +3,16 @@ package com.kwq.root.juc.synchronize;
 import com.kwq.root.juc.model.JavaObjectHead;
 import org.openjdk.jol.info.ClassLayout;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * @auther : kongweiqiang
  * @DATE : 2020/8/31
  * @DESC : Synchronized 可重入 父子类 独占锁 悲观锁
  */
 public class Synchronize {
+
+    private AtomicInteger i = new AtomicInteger(0);
 
     private JavaObjectHead head = new JavaObjectHead();
 
