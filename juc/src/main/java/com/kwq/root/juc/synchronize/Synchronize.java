@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * @auther : kongweiqiang
  * @DATE : 2020/8/31
- * @DESC : Synchronized 可重入 父子类 独占锁 悲观锁
+ * @DESC : Synchronized 可重入 父子类 独占锁 悲观锁 原子性 可见性 多个线程进入串行临界区
  */
 public class Synchronize {
 

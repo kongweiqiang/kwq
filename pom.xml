@@ -13,6 +13,7 @@
         <module>shardingsphere</module>
         <module>juc</module>
         <module>elasticsearch</module>
+        <module>rpc</module>
     </modules>
     <groupId>com.kwq</groupId>
     <artifactId>root</artifactId>
