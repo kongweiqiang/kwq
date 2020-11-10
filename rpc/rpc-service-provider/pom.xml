@@ -12,6 +12,7 @@
     <groupId>com.kwq.root.rpc</groupId>
     <artifactId>rpc-service-provider</artifactId>
     <version>0.0.1</version>
+    <description>远程服务提供者</description>
 
     <dependencies>
         <dependency>

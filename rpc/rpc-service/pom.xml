@@ -12,6 +12,7 @@
     <groupId>com.kwq.root.rpc</groupId>
     <artifactId>rpc-service</artifactId>
     <version>0.0.1</version>
+    <description>RPC-Netty-Core</description>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
